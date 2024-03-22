@@ -24,4 +24,4 @@ Open your browser and navigate to `http://localhost:3000/teachers` for the teach
 Contributions are welcome. Please make sure to update tests as appropriate.
 
 ## Contact
-For any inquiries or support, please contact the project author.
+For any inquiries or support, please contact the project author :)
