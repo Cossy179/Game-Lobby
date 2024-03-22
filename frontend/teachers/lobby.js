@@ -117,8 +117,33 @@ setInterval(fetchPlayers, 3000);
 
 // Function to start the game
 function startGame() {
-    // Redirect to game.html with game ID, type, and nickname
-    // window.location.href = `/game.html?id=${data.id}&type=${encodeURIComponent(data.type)}&nickname=${encodeURIComponent(enteredNickname)}`;
+    // Hide player count and player list
+    document.getElementById('playerCount').style.display = 'none';
+    document.getElementById('playerList').style.display = 'none';
+
+    // Show student scores
+    document.getElementById('studentScores').style.display = 'block';
+
+    // Fill student scores
+    students.forEach(student => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${student.name}: ${student.score}`;
+        document.getElementById('studentScoresList').appendChild(listItem);
+    });
+
+    // Send request to server to start the game
+    fetch('/api/startGame', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ gameId: gameId }), // Include the game ID in the body
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Game started:', data);
+    })
+    .catch(error => console.error('Error starting the game:', error));
 }
 
 // Add event listener to start button
